@@ -138,10 +138,10 @@ file_put_contents($pdfPath, $pdfData);
 $mail = new PHPMailer(true);
 try {
     $mail->isSMTP();
-    $mail->Host = 'sandbox.smtp.mailtrap.io';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = '1a7b6577b2fd1c';
-    $mail->Password = '7f9b9f0269bd05';
+    $mail->Username = 'idcardpro9@gmail.com';
+    $mail->Password = '9207677362rmz';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
