@@ -1,0 +1,12 @@
+# FROM php:8.1-apache
+# COPY . /var/www/html/
+# EXPOSE 80
+
+services:
+  - type: web
+    name: my-php-site
+    env: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    rootDir: .
