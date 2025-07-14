@@ -146,7 +146,7 @@ try {
     $mail->Port = 587;
 
     $mail->setFrom('no-reply@example.com', 'ID Card Generator');
-    $mail->addAddress($email);
+    $mail->addAddress('rhmnramees730@gmail.com');
     $mail->Subject = "Your ID Card";
     $mail->Body = "Hi {$name},\n\nPlease find your ID card attached.";
     $mail->addAttachment($pdfPath, 'IDCard.pdf');
