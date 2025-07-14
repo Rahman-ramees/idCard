@@ -140,8 +140,8 @@ try {
     $mail->isSMTP();
     $mail->Host = 'sandbox.smtp.mailtrap.io';
     $mail->SMTPAuth = true;
-    $mail->Username = '1e789f2db08f40';
-    $mail->Password = 'd472a998b827a2';
+    $mail->Username = '1a7b6577b2fd1c';
+    $mail->Password = '7f9b9f0269bd05';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
