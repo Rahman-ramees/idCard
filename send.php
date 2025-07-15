@@ -104,10 +104,7 @@ $html = '
                     <td><strong>Blood:</strong></td>
                     <td style="color: #d72638;">O+</td>
                 </tr>
-                <tr>
-                    <td><strong>Email:</strong></td>
-                    <td style="color: #d72638;">' . $email . '</td>
-                </tr>
+                
                 <tr>
                     <td><strong>Phone:</strong></td>
                     <td style="color: #d72638;">' . $phone . '</td>
