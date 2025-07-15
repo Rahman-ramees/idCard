@@ -108,9 +108,6 @@
                     <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center text-white mb-3">
                             <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                         </div>
                     </div>
                     <!-- Submit error message-->
@@ -119,8 +116,12 @@
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                     <!-- Submit Button-->
+                    <!-- Submit Button-->
                     <div class="text-center">
-                        <button style="padding-left: 2rem;padding-right: 2rem;padding-top: 0.5rem;padding-bottom: 0.5rem;" class="btn btn-primary btn-x text-uppercase" type="button" onclick="submitForm()">Submit</button>
+                        <button style="padding-left: 2rem;padding-right: 2rem;padding-top: 0.5rem;padding-bottom: 0.5rem;" class="btn btn-primary btn-x text-uppercase" id="submitButton" type="button" onclick="submitForm()">Submit</button>
+                        <div class="loader-container">
+                            <div class="loader" id="loader"></div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -377,6 +378,8 @@
         const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
         const phone = document.getElementById("phone").value;
+        const submitButton = document.getElementById("submitButton");
+        const loader = document.getElementById("loader");
         
         // Check if canvas has an image
         if (canvas.toDataURL("image/png") === 'data:,') {
@@ -392,6 +395,10 @@
         }
 
         try {
+            // Show loader and disable button
+            loader.style.display = "block";
+            submitButton.disabled = true;
+            
             const response = await fetch("send.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -404,6 +411,11 @@
             });
             
             const result = await response.text();
+            
+            // Hide loader and re-enable button
+            loader.style.display = "none";
+            submitButton.disabled = false;
+            
             alert(result);
             
             // If using SB Forms, you might want to show their success message
@@ -411,6 +423,9 @@
             
         } catch (error) {
             console.error("Error:", error);
+            // Hide loader and re-enable button on error too
+            loader.style.display = "none";
+            submitButton.disabled = false;
             alert("Error sending data: " + error.message);
             document.getElementById('submitErrorMessage').classList.remove('d-none');
         }
