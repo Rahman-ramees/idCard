@@ -79,7 +79,7 @@
                 background-size: 1em;
             }
             #submitSuccessMessage {
-                display: block;
+                display: none;
             }
             #submitButton {
                 display: none;
@@ -114,131 +114,83 @@
         </header>
         
         <!-- Contact-->
-        <!-- Contact-->
-<section class="page-section" id="contact">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">Student ID Card Details</h2>
-            <h3 class="section-subheading text-muted">Please provide accurate information for your ID card.</h3>
-        </div>
-        <form id="contactForm" onsubmit="return validateForm()">
-            <div class="row align-items-stretch mb-5">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input class="form-control" id="name" type="text" placeholder="Student Name *" required />
-                        <div class="error-message" id="nameError">Student name is required.</div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="parentsName" type="text" placeholder="Parent/Guardian Name *" required />
-                        <div class="error-message" id="parentsNameError">Parent/guardian name is required.</div>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="address" placeholder="Address *" required></textarea>
-                        <div class="error-message" id="addressError">Address is required.</div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="phone" type="tel" placeholder="Phone Number *" required />
-                        <div class="error-message" id="phoneError">A phone number is required.</div>
-                    </div>
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Update Your Details</h2>
+                    <h3 class="section-subheading text-muted">Let's make sure you are entering correct details.</h3>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="standard">Standard/Class *</label>
-                        <select id="standard" class="form-control" required>
-                            <option value="">-- Select Standard --</option>
-                            <option value="I">Class I</option>
-                            <option value="II">Class II</option>
-                            <option value="III">Class III</option>
-                            <option value="IV">Class IV</option>
-                            <option value="V">Class V</option>
-                            <option value="VI">Class VI</option>
-                            <option value="VII">Class VII</option>
-                            <option value="VIII">Class VIII</option>
-                            <option value="IX">Class IX</option>
-                            <option value="X">Class X</option>
-                            <option value="XI">Class XI</option>
-                            <option value="XII">Class XII</option>
-                        </select>
-                        <div class="error-message" id="standardError">Please select a standard/class.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="bloodGroup">Blood Group *</label>
-                        <select id="bloodGroup" class="form-control" required>
-                            <option value="">-- Select Blood Group --</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </select>
-                        <div class="error-message" id="bloodGroupError">Please select a blood group.</div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="admissionNo" type="text" placeholder="Admission Number *" required />
-                        <div class="error-message" id="admissionNoError">Admission number is required.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="dob">Date of Birth *</label>
-                        <input class="form-control" id="dob" type="date" required />
-                        <div class="error-message" id="dobError">Please select date of birth.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="photoOption">Select Photo Option *</label>
-                        <select id="photoOption" class="form-control" onchange="togglePhotoOption()" required>
-                            <option value="">-- Select Image option --</option>
-                            <option value="camera">Take Live Photo</option>
-                            <option value="upload">Upload Photo</option>
-                        </select>
-                        <div class="error-message" id="photoOptionError">Please select a photo option</div>
-                    </div>
-                    
-                    <!-- Camera Option -->
-                    <div id="cameraOption" class="photo-option">
-                        <div class="photo-option-content">
-                            <video id="video" autoplay></video>
-                            <button class="btn btn-primary" type="button" onclick="snap()" style="margin-top: 10px;">Capture Photo</button>
-                            <canvas id="canvas"></canvas>
-                            <div class="photo-preview-container">
-                                <img id="capturedPhoto" alt="Captured Photo Preview" />
+                <form id="contactForm">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" id="name" type="text" placeholder="Your Name *" required />
+                                <div class="error-message" id="nameError">A name is required.</div>
                             </div>
-                            <div class="error-message" id="cameraError">Please capture a photo first</div>
+                            <div class="form-group">
+                                <input class="form-control" id="email" type="email" placeholder="Your Email *" required />
+                                <div class="error-message" id="emailError">Please enter a valid email address.</div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required />
+                                <div class="error-message" id="phoneError">A phone number is required.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="photoOption">Select Photo Option *</label>
+                                <select id="photoOption" class="form-control" onchange="togglePhotoOption()" required>
+                                    <option value="">-- Select an option --</option>
+                                    <option value="camera">Take Live Photo</option>
+                                    <option value="upload">Upload Photo</option>
+                                </select>
+                                <div class="error-message" id="photoOptionError">Please select a photo option</div>
+                            </div>
+                            
+                            <!-- Camera Option -->
+                            <div id="cameraOption" class="photo-option">
+                                <div class="photo-option-content">
+                                    <video id="video" autoplay></video>
+                                    <button class="btn btn-primary" type="button" onclick="snap()" style="margin-top: 10px;">Capture Photo</button>
+                                    <canvas id="canvas"></canvas>
+                                    <div class="photo-preview-container">
+                                        <img id="capturedPhoto" alt="Captured Photo Preview" />
+                                    </div>
+                                    <div class="error-message" id="cameraError">Please capture a photo first</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Upload Option -->
+                            <div id="uploadOption" class="photo-option">
+                                <div class="photo-option-content">
+                                    <input class="form-control" id="photoUpload" type="file" accept="image/*" style="margin-top: 10px;" />
+                                    <div class="photo-preview-container">
+                                        <img id="imagePreview" alt="Uploaded Photo Preview" />
+                                    </div>
+                                    <div class="error-message" id="uploadError">Please upload a photo first</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Upload Option -->
-                    <div id="uploadOption" class="photo-option">
-                        <div class="photo-option-content">
-                            <input class="form-control" id="photoUpload" type="file" accept="image/*" style="margin-top: 10px;" />
-                            <div class="photo-preview-container">
-                                <img id="imagePreview" alt="Uploaded Photo Preview" />
-                            </div>
-                            <div class="error-message" id="uploadError">Please upload a photo first</div>
+                    <!-- Submit success message-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center text-white mb-3">
+                            <div class="fw-bolder">Form submission successful!</div>
                         </div>
                     </div>
-                </div>
+                    
+                    <!-- Submit error message-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    
+                    <!-- Submit Button-->
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-x text-uppercase" id="submitButton" type="button" style="padding: 0.5rem 2rem;">Submit</button>
+                        <div class="loader" id="loader"></div>
+                    </div>
+                </form>
             </div>
-            
-            <!-- Submit success message-->
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center text-white mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                </div>
-            </div>
-            
-            <!-- Submit error message-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-            
-            <!-- Submit Button-->
-            <div class="text-center">
-                <button class="btn btn-primary btn-x text-uppercase" id="submitButton" type="button" style="padding: 0.5rem 2rem;">Submit</button>
-                <div class="loader" id="loader"></div>
-            </div>
-        </form>
-    </div>
-</section>
+        </section>
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -376,14 +328,12 @@
             // Check if all form fields are completed
             function checkFormCompletion() {
                 const name = document.getElementById("name").value;
-                const parentsName = document.getElementById("parentsName").value;
-                const address = document.getElementById("address").value;
+                const email = document.getElementById("email").value;
                 const phone = document.getElementById("phone").value;
-                const standard = document.getElementById("standard").value;
-                const bloodGroup = document.getElementById("bloodGroup").value;
-                const admissionNo = document.getElementById("admissionNo").value;
-                const dob = document.getElementById("dob").value;
                 const photoOption = document.getElementById("photoOption").value;
+                
+                // Basic validation for email format
+                const isEmailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
                 
                 // Check if photo is available
                 let hasPhoto = false;
@@ -394,41 +344,36 @@
                 }
                 
                 // Show submit button only if all conditions are met
-                if (name && parentsName && address && phone && standard && bloodGroup && admissionNo && dob && photoOption && hasPhoto) {
+                if (name && isEmailValid && phone && photoOption && hasPhoto) {
                     document.getElementById("submitButton").style.display = 'inline-block';
                 } else {
                     document.getElementById("submitButton").style.display = 'none';
                 }
             }
-
+            
             // Add event listeners to all relevant fields
             document.getElementById("name").addEventListener('input', checkFormCompletion);
-            document.getElementById("parentsName").addEventListener('input', checkFormCompletion);
-            document.getElementById("address").addEventListener('input', checkFormCompletion);
+            document.getElementById("email").addEventListener('input', checkFormCompletion);
             document.getElementById("phone").addEventListener('input', checkFormCompletion);
-            document.getElementById("standard").addEventListener('change', checkFormCompletion);
-            document.getElementById("bloodGroup").addEventListener('change', checkFormCompletion);
-            document.getElementById("admissionNo").addEventListener('input', checkFormCompletion);
-            document.getElementById("dob").addEventListener('change', checkFormCompletion);
             document.getElementById("photoOption").addEventListener('change', checkFormCompletion);
-
+            
             // Submit form data
             async function submitForm() {
                 const name = document.getElementById("name").value;
-                const parentsName = document.getElementById("parentsName").value;
-                const address = document.getElementById("address").value;
+                const email = document.getElementById("email").value;
                 const phone = document.getElementById("phone").value;
-                const standard = document.getElementById("standard").value;
-                const bloodGroup = document.getElementById("bloodGroup").value;
-                const admissionNo = document.getElementById("admissionNo").value;
-                const dob = document.getElementById("dob").value;
                 const photoOption = document.getElementById("photoOption").value;
                 const submitButton = document.getElementById("submitButton");
                 const loader = document.getElementById("loader");
                 
                 // Validate form before submission
-                if (!name || !parentsName || !address || !phone || !standard || !bloodGroup || !admissionNo || !dob || !photoOption) {
+                if (!name || !email || !phone || !photoOption) {
                     alert("Please fill all required fields");
+                    return;
+                }
+                
+                if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                    alert("Please enter a valid email address");
                     return;
                 }
                 
@@ -456,16 +401,11 @@
                         });
                     }
                     
-                    // Prepare the data object with all fields
+                    // Prepare the data object in the exact format you want
                     const formData = {
                         name: name,
-                        parentsName: parentsName,
-                        address: address,
+                        email: email,
                         phone: phone,
-                        standard: standard,
-                        bloodGroup: bloodGroup,
-                        admissionNo: admissionNo,
-                        dob: dob,
                         image: imageData
                     };
                     
@@ -485,12 +425,10 @@
                     }
                     
                     const result = await response.json();
+                    console.log("API response:", result);
                     
-                    if (result.success) {
-                        document.getElementById('submitSuccessMessage').classList.remove('d-none');
-                    } else {
-                        throw new Error(result.message || 'Request failed');
-                    }
+                    // Show success message
+                    document.getElementById('submitSuccessMessage').classList.remove('d-none');
                     
                     // Reset form
                     contactForm.reset();
