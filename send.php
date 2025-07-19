@@ -17,7 +17,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 // Validate required fields
-$requiredFields = ['name', 'parentsName', 'address', 'phone', 'standard', 'bloodGroup', 'admissionNo', 'dob', 'image'];
+$requiredFields = ['name', 'parentsName', 'address', 'phone', 'standard' , 'division', 'bloodGroup', 'admissionNo', 'dob', 'image'];
 foreach ($requiredFields as $field) {
     if (empty($data[$field])) {
         http_response_code(400);
@@ -32,6 +32,7 @@ $parentsName = htmlspecialchars($data['parentsName']);
 $address = htmlspecialchars($data['address']);
 $phone = htmlspecialchars($data['phone']);
 $standard = htmlspecialchars($data['standard']);
+$division = htmlspecialchars($data['division']);
 $bloodGroup = htmlspecialchars($data['bloodGroup']);
 $admissionNo = htmlspecialchars($data['admissionNo']);
 $dob = htmlspecialchars($data['dob']);
@@ -69,7 +70,7 @@ $html = '
         <div class="header"><h3 style="margin: 0;">Esoft Factory</h3></div>
         <div class="profile"><img src="' . $image64 . '" /></div>
         <div class="name">' . $name . '</div>
-        <div class="details">STD. ' . $standard . '</div>
+        <div class="details">STD. ' . $standard . ' ' . strtoupper($division) . '</div>
         <div class="info">
             <table>
             <tr><td><strong>Parent:</strong></td><td style="color: #d72638;">' . $parentsName . '</td></tr>

@@ -142,24 +142,41 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="standard">Standard/Class *</label>
-                        <select id="standard" class="form-control" required>
-                            <option value="">-- Select Standard --</option>
-                            <option value="I">Class I</option>
-                            <option value="II">Class II</option>
-                            <option value="III">Class III</option>
-                            <option value="IV">Class IV</option>
-                            <option value="V">Class V</option>
-                            <option value="VI">Class VI</option>
-                            <option value="VII">Class VII</option>
-                            <option value="VIII">Class VIII</option>
-                            <option value="IX">Class IX</option>
-                            <option value="X">Class X</option>
-                            <option value="XI">Class XI</option>
-                            <option value="XII">Class XII</option>
-                        </select>
-                        <div class="error-message" id="standardError">Please select a standard/class.</div>
+                    <div class="form-group" style="display: flex;gap: 5px;">
+                        <div style="width: 50%;">
+                            <label for="standard">Standard/Class *</label>
+                            <select id="standard" class="form-control" required>
+                                <option value="">-- Select Standard --</option>
+                                <option value="I">Class I</option>
+                                <option value="II">Class II</option>
+                                <option value="III">Class III</option>
+                                <option value="IV">Class IV</option>
+                                <option value="V">Class V</option>
+                                <option value="VI">Class VI</option>
+                                <option value="VII">Class VII</option>
+                                <option value="VIII">Class VIII</option>
+                                <option value="IX">Class IX</option>
+                                <option value="X">Class X</option>
+                                <option value="XI">Class XI</option>
+                                <option value="XII">Class XII</option>
+                            </select>
+                            <div class="error-message" id="standardError">Please select a standard/class.</div>
+                        </div>
+                        <div style="width: 50%;">
+                            <label for="division">division *</label>
+                            <select id="division" class="form-control" required>
+                                <option value="">-- Select Division --</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>
+                                <option value="c">C</option>
+                                <option value="d">D</option>
+                                <option value="e">E</option>
+                                <option value="f">F</option>
+                                <option value="g">G</option>
+                                <option value="h">H</option>
+                            </select>
+                            <div class="error-message" id="divisionError">Please select a division.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="bloodGroup">Blood Group *</label>
@@ -380,6 +397,7 @@
                 const address = document.getElementById("address").value;
                 const phone = document.getElementById("phone").value;
                 const standard = document.getElementById("standard").value;
+                const division = document.getElementById("division").value;
                 const bloodGroup = document.getElementById("bloodGroup").value;
                 const admissionNo = document.getElementById("admissionNo").value;
                 const dob = document.getElementById("dob").value;
@@ -394,7 +412,7 @@
                 }
                 
                 // Show submit button only if all conditions are met
-                if (name && parentsName && address && phone && standard && bloodGroup && admissionNo && dob && photoOption && hasPhoto) {
+                if (name && parentsName && address && phone && standard && division && bloodGroup && admissionNo && dob && photoOption && hasPhoto) {
                     document.getElementById("submitButton").style.display = 'inline-block';
                 } else {
                     document.getElementById("submitButton").style.display = 'none';
@@ -407,6 +425,7 @@
             document.getElementById("address").addEventListener('input', checkFormCompletion);
             document.getElementById("phone").addEventListener('input', checkFormCompletion);
             document.getElementById("standard").addEventListener('change', checkFormCompletion);
+            document.getElementById("division").addEventListener('change', checkFormCompletion);
             document.getElementById("bloodGroup").addEventListener('change', checkFormCompletion);
             document.getElementById("admissionNo").addEventListener('input', checkFormCompletion);
             document.getElementById("dob").addEventListener('change', checkFormCompletion);
@@ -419,6 +438,7 @@
                 const address = document.getElementById("address").value;
                 const phone = document.getElementById("phone").value;
                 const standard = document.getElementById("standard").value;
+                const division = document.getElementById("division").value;
                 const bloodGroup = document.getElementById("bloodGroup").value;
                 const admissionNo = document.getElementById("admissionNo").value;
                 const dob = document.getElementById("dob").value;
@@ -427,7 +447,7 @@
                 const loader = document.getElementById("loader");
                 
                 // Validate form before submission
-                if (!name || !parentsName || !address || !phone || !standard || !bloodGroup || !admissionNo || !dob || !photoOption) {
+                if (!name || !parentsName || !address || !phone || !standard || !division || !bloodGroup || !admissionNo || !dob || !photoOption) {
                     alert("Please fill all required fields");
                     return;
                 }
@@ -463,6 +483,7 @@
                         address: address,
                         phone: phone,
                         standard: standard,
+                        division:division,
                         bloodGroup: bloodGroup,
                         admissionNo: admissionNo,
                         dob: dob,
