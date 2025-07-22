@@ -47,7 +47,7 @@ if (strpos($image64, 'data:image') !== 0) {
 }
 
 // Get background image - using relative path instead of base64
-$bgImagePath = 'assets/img/template5.png';
+$bgImagePath = 'assets/img/template8.png';
 if (!file_exists(__DIR__ . '/' . $bgImagePath)) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Background template image not found.']);
@@ -95,8 +95,8 @@ $html = '
             text-align: center;
         }
         .profile-img {
-            width: 22mm;
-            height: 22mm;
+            width: 20mm;
+            height: 20mm;
             border-radius: 50%;
             border: 1mm solid #ea2867;
             object-fit: cover;
@@ -128,7 +128,7 @@ $html = '
             top: 43mm;  /* Positioned below details */
             left: 5mm;
             width: 45mm;
-            font-size: 7pt;
+            font-size: 6pt;
             z-index: 2;
         }
         .info-table td {
@@ -136,8 +136,8 @@ $html = '
             vertical-align: top;
         }
         .info-table td:first-child {
-            font-weight: bold;
-            width: 35%;
+            font-weight: 300;
+            width: 38%;
         }
     </style>
 </head>
@@ -152,12 +152,12 @@ $html = '
     <div class="details">STD. ' . $standard . ' ' . strtoupper($division) . '</div>
     
     <table class="info-table">
-        <tr><td>Parent</td><td>' . $parentsName . '</td></tr>
-        <tr><td>Address</td><td>' . $address . '</td></tr>
-        <tr><td>Phone</td><td>' . $phone . '</td></tr>
-        <tr><td>Admission No</td><td>' . $admissionNo . '</td></tr>
-        <tr><td>Blood Group</td><td>' . $bloodGroup . '</td></tr>
-        <tr><td>DOB</td><td>' . $dob . '</td></tr>
+        <tr><td>Parent</td><td>: ' . $parentsName . '</td></tr>
+        <tr><td>Address</td><td>: ' . $address . '</td></tr>
+        <tr><td>Phone</td><td>: ' . $phone . '</td></tr>
+        <tr><td>Admission No</td><td>: ' . $admissionNo . '</td></tr>
+        <tr><td>Blood Group</td><td>: ' . $bloodGroup . '</td></tr>
+        <tr><td>DOB</td><td>: ' . $dob . '</td></tr>
     </table>
 </body>
 </html>';
