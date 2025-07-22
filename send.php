@@ -46,113 +46,144 @@ if (strpos($image64, 'data:image') !== 0) {
     exit;
 }
 
-// Get background image
-$bgImagePath = __DIR__ . '/assets/img/template5.png';
-if (!file_exists($bgImagePath)) {
+// Get background image - using relative path instead of base64
+$bgImagePath = 'assets/img/template5.png';
+if (!file_exists(__DIR__ . '/' . $bgImagePath)) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Background template image not found.']);
     exit;
 }
-$bgImageBase64 = base64_encode(file_get_contents($bgImagePath));
-$bgImageSrc = 'data:image/jpeg;base64,' . $bgImageBase64;
 
 // === HTML template ===
+// ... [keep all your initial code until the HTML template section] ...
+
+// === HTML template with absolute positioning ===
 $html = '
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
         @page {
             size: 55mm 85mm;
             margin: 0;
+            padding: 0;
         }
-        html, body {
+        body {
             margin: 0;
             padding: 0;
             width: 55mm;
             height: 85mm;
+            position: relative;
+            font-family: Arial, sans-serif;
         }
-        .card {
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: url(' . $bgImageSrc . ') no-repeat center center;
-            background-size: 100% 100%; /* Stretch to fill */
-            font-family: Arial, sans-serif;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            page-break-inside: avoid;
-            overflow: hidden;
+            z-index: 1;
         }
-        .profile {
+        /* Profile image container */
+        .profile-container {
+            position: absolute;
+            top: 10mm;  /* Adjusted to bring content up */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
             text-align: center;
-            margin-bottom: 2mm;
         }
-        .profile img {
+        .profile-img {
             width: 22mm;
             height: 22mm;
             border-radius: 50%;
             border: 1mm solid #ea2867;
-            margin-top:3rem;
+            object-fit: cover;
         }
+        /* Name section */
         .name {
+            position: absolute;
+            top: 35mm;  /* Positioned below profile image */
+            left: 0;
+            width: 100%;
             text-align: center;
             font-weight: bold;
-            font-size: 11px;
-            margin-bottom: 1mm;
+            font-size: 9pt;
+            z-index: 2;
         }
+        /* Standard/Division */
         .details {
-            text-align: center;
-            color: #000000ff;
-            font-size: 9px;
-            margin-bottom: 1mm;
-        }
-        .info {
-            font-size: 8px;
-            margin: 0 3mm;
-            color: #000000ff;
-        }
-        .name { font-size: 9px; }
-        .details { font-size: 8px; }
-        .info { font-size: 7px; }
-        .info table {
+            position: absolute;
+            top: 39mm;
+            left: 0;
             width: 100%;
+            text-align: center;
+            font-size: 8pt;
+            z-index: 2;
         }
-        .info td {
-            padding: 0.5mm 0;
+        /* Information table */
+        .info-table {
+            position: absolute;
+            top: 43mm;  /* Positioned below details */
+            left: 5mm;
+            width: 45mm;
+            font-size: 7pt;
+            z-index: 2;
+        }
+        .info-table td {
+            padding: 0.3mm 0;
+            vertical-align: top;
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            width: 35%;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="profile"><img src="' . $image64 . '" /></div>
-        <div class="name">' . $name . '</div>
-        <div class="details">STD. ' . $standard . ' ' . strtoupper($division) . '</div>
-        <div class="info">
-            <table>
-                <tr><td><strong>Parent</strong></td><td style="color: #000000ff;">: ' . $parentsName . '</td></tr>
-                <tr><td><strong>Address</strong></td><td style="color: #000000ff;">: ' . $address . '</td></tr>
-                <tr><td><strong>Phone</strong></td><td style="color: #000000ff;">: ' . $phone . '</td></tr>
-                <tr><td><strong>Admisson No</strong></td><td style="color: #000000ff;">: ' . $admissionNo . '</td></tr>
-                <tr><td><strong>Blood Group</strong></td><td style="color: #000000ff;">: ' . $bloodGroup . '</td></tr>
-                <tr><td><strong>DOB</strong></td><td style="color: #000000ff;">: ' . $dob . '</td></tr>
-            </table>
-        </div>
+    <img class="background" src="' . $bgImagePath . '" />
+    
+    <div class="profile-container">
+        <img class="profile-img" src="' . $image64 . '" />
     </div>
+    
+    <div class="name">' . $name . '</div>
+    <div class="details">STD. ' . $standard . ' ' . strtoupper($division) . '</div>
+    
+    <table class="info-table">
+        <tr><td>Parent</td><td>' . $parentsName . '</td></tr>
+        <tr><td>Address</td><td>' . $address . '</td></tr>
+        <tr><td>Phone</td><td>' . $phone . '</td></tr>
+        <tr><td>Admission No</td><td>' . $admissionNo . '</td></tr>
+        <tr><td>Blood Group</td><td>' . $bloodGroup . '</td></tr>
+        <tr><td>DOB</td><td>' . $dob . '</td></tr>
+    </table>
 </body>
 </html>';
 
+// echo json_encode(['success' => true, 'message' => $html]);
 // === Generate PDF ===
 $pdfPath = '';
 try {
-    $dompdf = new Dompdf();
+    $dompdf = new Dompdf([
+        'chroot' => __DIR__, // Important for local file access
+        'isRemoteEnabled' => true // Enable loading of remote images
+    ]);
+    
     $dompdf->loadHtml($html);
     $dompdf->setPaper([0, 0, 55 * 2.83465, 85 * 2.83465], 'portrait');
+    
+    // Improve rendering quality
+    $dompdf->set_option('isPhpEnabled', true);
+    $dompdf->set_option('isHtml5ParserEnabled', true);
+    $dompdf->set_option('isRemoteEnabled', true);
+    $dompdf->set_option('defaultFont', 'Arial');
+    
     $dompdf->render();
     $pdfData = $dompdf->output();
     
+    // Save PDF temporarily
     $uploadDir = __DIR__ . "/uploads";
     if (!is_dir($uploadDir)) {
         if (!mkdir($uploadDir, 0755, true)) {
@@ -169,19 +200,22 @@ try {
     $mail = new PHPMailer(true);
     try {
         // Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_OFF; // Change to DEBUG_SERVER for troubleshooting
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'idcardpro9@gmail.com'; // Replace with your email
-        $mail->Password = 'rptoxgufsmmqpqlh'; // Replace with your app password
+        $mail->Username = 'idcardpro9@gmail.com';
+        $mail->Password = 'rptoxgufsmmqpqlh';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
         
         // Recipients
         $mail->setFrom('no-reply@example.com', 'ID Card Generator');
-        $mail->addAddress('rhmnramees730@gmail.com'); // Primary recipient
-        // $mail->addCC('another@example.com'); // Optional CC
+        $mail->addAddress('no-reply@noreply.com');
+        $ccEmails = ['shanshanik461@gmail.com', 'rhmnramees730@gmail.com'];
+        foreach ($ccEmails as $cc) {
+            $mail->addCC($cc);
+        }
         
         // Content
         $mail->isHTML(true);
