@@ -47,7 +47,7 @@ if (strpos($image64, 'data:image') !== 0) {
 }
 
 // Get background image - using relative path instead of base64
-$bgImagePath = 'assets/img/template1.png';
+$bgImagePath = 'assets/img/template2.png';
 if (!file_exists(__DIR__ . '/' . $bgImagePath)) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Background template image not found.']);
@@ -185,7 +185,8 @@ $html = '
         </div>
         <div>
             <p class="school-address">
-                G M U P S CHERKALA P O THEKKIL FERRY 
+                <span style="font-size: 10pt;">G M U P S CHERKALA <br/></span>
+                P O THEKKIL FERRY  <br/>
                 KASARAGOD 671542
             </p>
         </div>
