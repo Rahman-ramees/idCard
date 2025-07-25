@@ -54,6 +54,8 @@ if (!file_exists(__DIR__ . '/' . $bgImagePath)) {
     exit;
 }
 
+$schoolLogoPath = 'assets/img/school-logo1.png';
+
 // === HTML template ===
 // ... [keep all your initial code until the HTML template section] ...
 
@@ -63,6 +65,7 @@ $html = '
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
         @page {
             size: 55mm 85mm;
@@ -85,10 +88,37 @@ $html = '
             height: 100%;
             z-index: 1;
         }
+        .header-container{
+            width:100%;
+          position:absolute;
+          top:0px;
+          left:0px;
+          z-index: 2;
+        }
+        .school-logo {
+            width: 10mm;
+            height: auto;
+            display: block;
+            margin: 2mm auto 2mm 2mm;
+        }
+        .school-address {
+            text-align: center;
+            font-size: 7pt;
+            margin: 0;
+            padding: 0;
+            font-weight:bold;
+            color:white;
+            position:absolute;
+            top:0.8rem;
+            left:5.5rem;
+            width:10rem;
+            text-align:left;
+        }
+
         /* Profile image container */
         .profile-container {
             position: absolute;
-            top: 10mm;  /* Adjusted to bring content up */
+            top: 12mm;  /* Adjusted to bring content up */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -111,6 +141,7 @@ $html = '
             font-weight: bold;
             font-size: 9pt;
             z-index: 2;
+            font-family: "Montserrat", Arial, sans-serif;
         }
         /* Standard/Division */
         .details {
@@ -121,29 +152,44 @@ $html = '
             text-align: center;
             font-size: 8pt;
             z-index: 2;
+            font-family: "Montserrat", Arial, sans-serif;
         }
         /* Information table */
         .info-table {
             position: absolute;
-            top: 43mm;  /* Positioned below details */
+            top: 45mm;  /* Positioned below details */
             left: 5mm;
             width: 45mm;
             font-size: 6pt;
             z-index: 2;
+            font-family: "Montserrat", Arial, sans-serif;
         }
         .info-table td {
             padding: 0.3mm 0;
             vertical-align: top;
+            font-weight: bold;
         }
         .info-table td:first-child {
             font-weight: 300;
             width: 38%;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <img class="background" src="' . $bgImagePath . '" />
     
+    <div class="header-container">
+        <div>
+            <img class="school-logo" src="' . $schoolLogoPath . '" />
+        </div>
+        <div>
+            <p class="school-address">
+                G M U P S CHERKALA P O THEKKIL FERRY 
+                KASARAGOD 671542
+            </p>
+        </div>
+    </div>
     <div class="profile-container">
         <img class="profile-img" src="' . $image64 . '" />
     </div>
@@ -212,7 +258,7 @@ try {
         // Recipients
         $mail->setFrom('no-reply@example.com', 'ID Card Generator');
         $mail->addAddress('makeomaaz13@gmail.com');
-        $ccEmails = ['shanshanik461@gmail.com', 'rhmnramees730@gmail.com'];
+        $ccEmails = ['rhmnramees730@gmail.com'];
         foreach ($ccEmails as $cc) {
             $mail->addCC($cc);
         }
