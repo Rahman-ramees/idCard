@@ -184,8 +184,8 @@ $html = '
         </div>
         <div>
             <p class="school-address">
-                <span style="font-size: 10pt;">G M U P S CHERKALA </span> <br/>
-                    P O &nbsp;THEKKIL FERRY  <br/>
+                <span style="font-size: 10pt;">G M U P S CHERKALA </span> <br>
+                    P O &nbsp;THEKKIL FERRY  <br>
                     671542 KASARAGOD 
             </p>
         </div>
