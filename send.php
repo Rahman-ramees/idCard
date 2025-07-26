@@ -96,7 +96,7 @@ $html = '
           z-index: 2;
         }
         .school-logo {
-            width: 10mm;
+            width: 13mm;
             height: auto;
             display: block;
             margin: 2mm auto 2mm 2mm;
@@ -109,10 +109,9 @@ $html = '
             font-weight:bold;
             color:white;
             position:absolute;
-            top:0.8rem;
-            left:5.5rem;
+            top:0.5rem;
+            left:5rem;
             width:10rem;
-            text-align:left;
         }
 
         /* Profile image container */
@@ -186,8 +185,8 @@ $html = '
         <div>
             <p class="school-address">
                 <span style="font-size: 10pt;">G M U P S CHERKALA <br/></span>
-                P O THEKKIL FERRY  <br/>
-                KASARAGOD 671542
+                    P O &nbsp;THEKKIL FERRY  <br/>
+                    671542 KASARAGOD 
             </p>
         </div>
     </div>
