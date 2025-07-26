@@ -225,6 +225,7 @@ try {
     $dompdf->set_option('isHtml5ParserEnabled', true);
     $dompdf->set_option('isRemoteEnabled', true);
     $dompdf->set_option('defaultFont', 'Arial');
+    $dompdf->getOptions()->setFontDir('/path/to/custom/writable/font-dir');
     
     $dompdf->render();
     $pdfData = $dompdf->output();
