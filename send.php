@@ -65,7 +65,6 @@ $html = '
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="http://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
         @page {
             size: 55mm 85mm;
@@ -78,7 +77,6 @@ $html = '
             width: 55mm;
             height: 85mm;
             position: relative;
-            font-family: Arial, sans-serif;
         }
         .background {
             position: absolute;
@@ -140,7 +138,6 @@ $html = '
             font-weight: bold;
             font-size: 9pt;
             z-index: 2;
-            font-family: "Montserrat", Arial, sans-serif;
         }
         /* Standard/Division */
         .details {
@@ -151,7 +148,6 @@ $html = '
             text-align: center;
             font-size: 8pt;
             z-index: 2;
-            font-family: "Montserrat", Arial, sans-serif;
         }
         /* Information table */
         .info-table {
@@ -161,7 +157,6 @@ $html = '
             width: 45mm;
             font-size: 6pt;
             z-index: 2;
-            font-family: "Montserrat", Arial, sans-serif;
         }
         .info-table td {
             padding: 0.3mm 0;
