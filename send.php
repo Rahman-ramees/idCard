@@ -257,7 +257,7 @@ try {
         
         // Recipients
         $mail->setFrom('no-reply@example.com', 'ID Card Generator');
-        $mail->addAddress('makeomaaz13@gmail.com');
+        $mail->addAddress('rhmnramees730@gmail.com');//makeomaaz13@gmail.com
         $ccEmails = ['rhmnramees730@gmail.com'];
         foreach ($ccEmails as $cc) {
             $mail->addCC($cc);
