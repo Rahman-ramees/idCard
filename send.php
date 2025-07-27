@@ -47,7 +47,7 @@ if (strpos($image64, 'data:image') !== 0) {
 }
 
 // Get background image - using relative path instead of base64
-$bgImagePath = 'assets/img/template2.png';
+$bgImagePath = 'assets/img/template1.png';
 if (!file_exists(__DIR__ . '/' . $bgImagePath)) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Background template image not found.']);
@@ -264,7 +264,7 @@ try {
         
         // Recipients
         $mail->setFrom('no-reply@example.com', 'ID Card Generator');
-        $mail->addAddress('no-reply@example.com');//makeomaaz13@gmail.com
+        $mail->addAddress('makeomaaz13@gmail.com');
         $ccEmails = ['rhmnramees730@gmail.com'];
         foreach ($ccEmails as $cc) {
             $mail->addCC($cc);
