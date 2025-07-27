@@ -65,7 +65,6 @@ $html = '
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    // <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
         @page {
             size: 55mm 85mm;
@@ -141,7 +140,6 @@ $html = '
             font-weight: bold;
             font-size: 9pt;
             z-index: 2;
-            // font-family: "Montserrat", Arial, sans-serif;
         }
         /* Standard/Division */
         .details {
@@ -152,7 +150,6 @@ $html = '
             text-align: center;
             font-size: 8pt;
             z-index: 2;
-            // font-family: "Montserrat", Arial, sans-serif;
         }
         /* Information table */
         .info-table {
@@ -162,7 +159,6 @@ $html = '
             width: 45mm;
             font-size: 5.5pt;
             z-index: 2;
-            // font-family: "Montserrat", Arial, sans-serif;
             border-collapse: collapse;
             line-height: 1.1; /* Reduced line height */
         }
@@ -236,8 +232,6 @@ try {
     $dompdf->set_option('isHtml5ParserEnabled', true);
     $dompdf->set_option('isRemoteEnabled', true);
     $dompdf->set_option('defaultFont', 'Arial');
-    // $customFontDir = __DIR__ . "/tmp_fonts";
-    // $dompdf->getOptions()->setFontDir($customFontDir);
     
     $dompdf->render();
     $pdfData = $dompdf->output();
