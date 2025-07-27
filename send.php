@@ -65,6 +65,7 @@ $html = '
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
         @page {
             size: 55mm 85mm;
@@ -77,6 +78,8 @@ $html = '
             width: 55mm;
             height: 85mm;
             position: relative;
+            font-family: Arial, sans-serif;
+            text-transform:uppercase;
         }
         .background {
             position: absolute;
@@ -138,6 +141,7 @@ $html = '
             font-weight: bold;
             font-size: 9pt;
             z-index: 2;
+            font-family: "Montserrat", Arial, sans-serif;
         }
         /* Standard/Division */
         .details {
@@ -148,6 +152,7 @@ $html = '
             text-align: center;
             font-size: 8pt;
             z-index: 2;
+            font-family: "Montserrat", Arial, sans-serif;
         }
         /* Information table */
         .info-table {
@@ -155,18 +160,29 @@ $html = '
             top: 45mm;  /* Positioned below details */
             left: 5mm;
             width: 45mm;
-            font-size: 6pt;
+            font-size: 5.5pt;
             z-index: 2;
+            font-family: "Montserrat", Arial, sans-serif;
+            border-collapse: collapse;
+            line-height: 1.1; /* Reduced line height */
         }
         .info-table td {
-            padding: 0.3mm 0;
+            padding: 0.2mm 0; /* Reduced padding */
             vertical-align: top;
             font-weight: bold;
         }
         .info-table td:first-child {
-            font-weight: 300;
-            width: 38%;
+            width: 41%; /* Label column */
             font-weight: bold;
+            padding-left: 1mm;
+        }
+        .info-table td:nth-child(2) {
+            padding: 0;
+            text-align: center;
+        }
+        .info-table td:nth-child(3) {
+            width: 60%; /* Value column */
+            padding-left: 1mm;
         }
     </style>
 </head>
@@ -193,12 +209,12 @@ $html = '
     <div class="details">STD. ' . $standard . ' ' . strtoupper($division) . '</div>
     
     <table class="info-table">
-        <tr><td>Parent</td><td>: ' . $parentsName . '</td></tr>
-        <tr><td>Address</td><td>: ' . $address . '</td></tr>
-        <tr><td>Phone</td><td>: ' . $phone . '</td></tr>
-        <tr><td>Admission No</td><td>: ' . $admissionNo . '</td></tr>
-        <tr><td>Blood Group</td><td>: ' . $bloodGroup . '</td></tr>
-        <tr><td>DOB</td><td>: ' . $dob . '</td></tr>
+        <tr><td>Parent</td><td>:</td><td>' . $parentsName . '</td></tr>
+        <tr><td>Phone</td><td>:</td><td>' . $phone . '</td></tr>
+        <tr><td>Address</td><td>:</td><td>' . $address . '</td></tr>
+        <tr><td>Admission No</td><td>:</td><td>' . $admissionNo . '</td></tr>
+        <tr><td>Blood Group</td><td>:</td><td>' . $bloodGroup . '</td></tr>
+        <tr><td>DOB</td><td>:</td><td>' . $dob . '</td></tr>
     </table>
 </body>
 </html>';
@@ -220,7 +236,8 @@ try {
     $dompdf->set_option('isHtml5ParserEnabled', true);
     $dompdf->set_option('isRemoteEnabled', true);
     $dompdf->set_option('defaultFont', 'Arial');
-    $dompdf->getOptions()->setFontDir('/path/to/custom/writable/font-dir');
+    $customFontDir = __DIR__ . "/tmp_fonts";
+    $dompdf->getOptions()->setFontDir($customFontDir);
     
     $dompdf->render();
     $pdfData = $dompdf->output();
@@ -253,7 +270,7 @@ try {
         
         // Recipients
         $mail->setFrom('no-reply@example.com', 'ID Card Generator');
-        $mail->addAddress('makeomaaz13@gmail.com');
+        $mail->addAddress('no-reply@example.com');//makeomaaz13@gmail.com
         $ccEmails = ['rhmnramees730@gmail.com'];
         foreach ($ccEmails as $cc) {
             $mail->addCC($cc);
