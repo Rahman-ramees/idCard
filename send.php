@@ -157,10 +157,10 @@ $html = '
             top: 45mm;  /* Positioned below details */
             left: 5mm;
             width: 45mm;
-            font-size: 5.5pt;
+            font-size: 6pt;
             z-index: 2;
             border-collapse: collapse;
-            line-height: 1.1; /* Reduced line height */
+            line-height: 1.5; /* Reduced line height */
         }
         .info-table td {
             padding: 0.2mm 0; /* Reduced padding */
